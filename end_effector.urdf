@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+
+<robot name="eef">
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1"/>
+    </material>
+    <material name="grey">
+        <color rgba="0.6 0.6 0.6 1"/>
+    </material>
+    <material name="blue">
+        <color rgba="0.2 0.2 1 0.5"/>
+    </material>
+    <material name="red">
+        <color rgba="1 0.0 0.0 0.8"/>
+    </material>
+
+    <!-- Base -->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.058" length="0.012"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.006" rpy="0.0 0.0 0.0"/>
+            <material name="white" />
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.058" length="0.012"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.006" rpy="0.0 0.0 0.0"/>
+        </collision>
+    </link>
+
+    <!-- Square Box -->
+    <link name="square_box">
+        <visual>
+            <geometry>
+                <box size="0.056 0.056 0.056"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.056 0.056 0.056"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </collision>
+    </link>
+
+    <!-- cylinder(motor) inside rotating magnet -->
+    <link name="motor">
+        <visual>
+            <geometry>
+                <cylinder radius="0.027" length="0.136"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <material name="red" />
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.027" length="0.136"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </collision>
+    </link>
+
+    <!-- end effector disk -->
+    <link name="disk">
+        <visual>
+            <geometry>
+                <cylinder radius="0.04" length="0.004"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <material name="grey" />
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.04" length="0.004"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </collision>
+        
+    </link>
+
+    <!-- end effector cylinder -->
+    <link name="end_effector">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.076"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <material name="blue" />
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.076"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </collision>
+    </link>
+
+    <link name="magnet">
+        <visual>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <material name="black" />
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </collision>
+    </link>
+
+    <!-- joint -->
+    <joint name="base_square_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="square_box"/>
+        <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <joint name="square_disk_joint" type="fixed">
+        <parent link="square_box"/>
+        <child link="disk"/>
+        <origin xyz="0.0 0.0 0.03" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <joint name="eef_disk_joint" type="fixed">
+        <parent link="disk"/>
+        <child link="end_effector"/>
+        <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <joint name="base_motor_joint" type="revolute">
+        <parent link="base_link"/>
+        <child link="motor"/>
+        <origin xyz="0.0 0.0 0.08" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-3.14" upper="3.14" effort="5.0" velocity="1.0"/>
+    </joint>
+
+    <joint name="motor_magnet_joint" type="fixed">
+        <parent link="motor"/>
+        <child link="magnet"/>
+        <origin xyz="0.0 0.0 0.048" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+</robot>
