@@ -3,14 +3,14 @@ This section explains how to train a YOLOv8 model to detect boxe, pipe, base lin
 
 ## Steps Overview
 ### 1. Data Collection
-- Capture ~400 images of the box under various lighting and angles using phone or OAK-D.
-  > I have prepared the capture_image.py file if you want to take a photo with the camera( press 's' to take a photo and 'q' to quit)
+- Capture ~400 images of the box under various lighting and angles using phone or OAK-D
+  > I have prepared the capture_image.py file if you want to take a photo with the camera
 ### 2. Labeling
 - Upload images to [Roboflow](https://roboflow.com)
-- Annotate boxe, pipe, base_link, export in YOLOv8 format, and download the dataset.
+- Annotate boxe, pipe, base_link, export in YOLOv8 format, and download the dataset
 
 ### 3. Upload to Google Drive
-- Place the dataset folder inside Yolov8/ on your Drive.
+- Place the dataset folder inside Yolov8/ on your Drive
 - Create a new file: yolov8_training.ipynb and training on Google Colab
   > You get the best.py file after completion and download it to your computer
 
