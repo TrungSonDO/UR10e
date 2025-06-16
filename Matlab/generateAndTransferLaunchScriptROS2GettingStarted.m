@@ -1,4 +1,7 @@
 % Remember add path before run this function 
+% For example, before run this function, i added this line: addpath('~/Documents/MATLAB/Examples/R2024a/urseries/GettingStartedControllingSimulatedUR5eExample')  
+%               to declare this function to be used for ur10e
+
 function generateAndTransferLaunchScriptGettingStarted(device,WorkSpaceFolder,interface,RobotAddress)
     
     % Open a file to write set of commands to lauunch interface with
