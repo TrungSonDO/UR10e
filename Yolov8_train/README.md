@@ -1,5 +1,5 @@
 # Connect to OAK-D USB Camera
-### 1. Install dependent libraries
+### 1. Install dependencies
 ```
 sudo wget -qO- https://docs.luxonis.com/install_dependencies.sh | bash
 ```
