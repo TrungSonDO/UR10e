@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 
-<robot name="eef">
+<robot name="ur10e_tool0">
+
+    <!-- MATERIALS  -->
     <material name="white">
         <color rgba="1 1 1 1"/>
     </material>
@@ -17,8 +19,10 @@
         <color rgba="1 0.0 0.0 0.8"/>
     </material>
 
-    <!-- Base -->
-    <link name="base_link">
+    <!-- TOOL BASE -->
+    <link name="base_link" /> # <-- add base_link to run with urdf_tutorial: ros2 launch urdf_tutorial display.launch.py model:=/home/tson/end_effector.urdf
+
+    <link name="tool_mount">
         <visual>
             <geometry>
                 <cylinder radius="0.058" length="0.012"/>
@@ -34,8 +38,8 @@
         </collision>
     </link>
 
-    <!-- Square Box -->
-    <link name="square_box">
+    <!-- SQUARE MOTOR BOX -->
+    <link name="outer_casing">
         <visual>
             <geometry>
                 <box size="0.056 0.056 0.056"/>
@@ -51,8 +55,8 @@
         </collision>
     </link>
 
-    <!-- cylinder(motor) inside rotating magnet -->
-    <link name="motor">
+    <!-- MOTOR INSIDE ROTATING magnet_tip -->
+    <link name="stepper_motor">
         <visual>
             <geometry>
                 <cylinder radius="0.027" length="0.136"/>
@@ -68,8 +72,8 @@
         </collision>
     </link>
 
-    <!-- end effector disk -->
-    <link name="disk">
+    <!-- ROUND FLANGE (aluminum disc mounted on front of motor) -->
+    <link name="motor_flange">
         <visual>
             <geometry>
                 <cylinder radius="0.04" length="0.004"/>
@@ -86,8 +90,8 @@
         
     </link>
 
-    <!-- end effector cylinder -->
-    <link name="end_effector">
+    <!-- CYLINDER USED TO MOUNT magnet_tip INSIDE -->
+    <link name="magnet_holder">
         <visual>
             <geometry>
                 <cylinder radius="0.03" length="0.076"/>
@@ -103,7 +107,7 @@
         </collision>
     </link>
 
-    <link name="magnet">
+    <link name="magnet_tip">
         <visual>
             <geometry>
                 <sphere radius="0.02"/>
@@ -119,37 +123,50 @@
         </collision>
     </link>
 
-    <!-- joint -->
-    <joint name="base_square_joint" type="fixed">
+    <!-- JOINT -->
+    <joint name="base_to_tool_mount_joint" type="fixed">
         <parent link="base_link"/>
-        <child link="square_box"/>
+        <child link="tool_mount"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+
+    <joint name="tool_mount_to_casing_joint" type="fixed">
+        <parent link="tool_mount"/>
+        <child link="outer_casing"/>
         <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 0.0"/>
     </joint>
 
-    <joint name="square_disk_joint" type="fixed">
-        <parent link="square_box"/>
-        <child link="disk"/>
+    <joint name="casing_flange_joint" type="fixed">
+        <parent link="outer_casing"/>
+        <child link="motor_flange"/>
         <origin xyz="0.0 0.0 0.03" rpy="0.0 0.0 0.0"/>
     </joint>
 
-    <joint name="eef_disk_joint" type="fixed">
-        <parent link="disk"/>
-        <child link="end_effector"/>
+    <joint name="flange_magnet_holder_joint" type="fixed">
+        <parent link="motor_flange"/>
+        <child link="magnet_holder"/>
         <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 0.0"/>
     </joint>
 
-    <joint name="base_motor_joint" type="revolute">
-        <parent link="base_link"/>
-        <child link="motor"/>
+    <joint name="tool_mount_motor_joint" type="revolute">
+        <parent link="tool_mount"/>
+        <child link="stepper_motor"/>
         <origin xyz="0.0 0.0 0.08" rpy="0.0 0.0 0.0"/>
         <axis xyz="0 0 1"/>
         <limit lower="-3.14" upper="3.14" effort="5.0" velocity="1.0"/>
     </joint>
 
-    <joint name="motor_magnet_joint" type="fixed">
-        <parent link="motor"/>
-        <child link="magnet"/>
+    <joint name="stepper_motor_magnet_tip_joint" type="fixed">
+        <parent link="stepper_motor"/>
+        <child link="magnet_tip"/>
         <origin xyz="0.0 0.0 0.048" rpy="0.0 0.0 0.0"/>
     </joint>
+
+    <!-- <joint name="wrist_3_to_tool_joint" type="fixed">
+        <parent link="wrist_3_link"/>
+        <child link="tool_mount"/>
+        <origin xyz="0 0 0.1" rpy="0 0 0"/> 
+    </joint> -->
 
 </robot>
