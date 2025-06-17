@@ -1,5 +1,5 @@
 % Remember add path before run this function 
-% For example, before run this function, i added this line: addpath('~/Documents/MATLAB/Examples/R2024a/urseries/GettingStartedControllingSimulatedUR5eExample')  
+% For example, before run this function, i added this command: addpath('~/Documents/MATLAB/Examples/R2024a/urseries/GettingStartedControllingSimulatedUR10eExample')  
 %               to declare this function to be used for ur10e
 
 function generateAndTransferLaunchScriptGettingStarted(device,WorkSpaceFolder,interface,RobotAddress)
@@ -9,7 +9,7 @@ function generateAndTransferLaunchScriptGettingStarted(device,WorkSpaceFolder,in
     fid=fopen(fullfile(tempdir,"launchUR.sh"),"w+");
     fprintf(fid,"#!/bin/sh\n");
     fprintf(fid,"export SVGA_VGPU10=0\n");
-    % Không cần ROS_MASTER_URI với ROS2
+    % Dont need ROS_MASTER_URI and ROS2
     fprintf(fid,"export ROS_DOMAIN_ID=0\n");
     fprintf(fid,"export RMW_IMPLEMENTATION=rmw_fastrtps_cpp\n");
 
