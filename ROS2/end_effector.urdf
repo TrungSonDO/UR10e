@@ -55,7 +55,7 @@
         </collision>
     </link>
 
-    <!-- MOTOR INSIDE ROTATING magnet_tip -->
+    <!-- MOTOR INSIDE ROTATING MAGNET TIP -->
     <link name="stepper_motor">
         <visual>
             <geometry>
@@ -90,7 +90,7 @@
         
     </link>
 
-    <!-- CYLINDER USED TO MOUNT magnet_tip INSIDE -->
+    <!-- CYLINDER USED TO MOUNT MAGNET TIP INSIDE -->
     <link name="magnet_holder">
         <visual>
             <geometry>
