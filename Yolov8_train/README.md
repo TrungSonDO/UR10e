@@ -11,7 +11,7 @@ This section explains how to train a YOLOv8 model to detect boxe, pipe, base lin
 
 ### 3. Upload to Google Drive
 - Place the dataset folder inside Yolov8/ on your Drive
-- Create a new file: yolov8_training.ipynb and training on Google Colab
+- Create a new file: yolov8_training.ipynb in folder Yolov8 and training on Google Colab
   > You get the best.py file after completion and download it to your computer
 
 
