@@ -8,7 +8,7 @@ sudo wget -qO- https://docs.luxonis.com/install_dependencies.sh | bash
 Luxonis provides a visual tool to check the signal from the camera:
 - Download and use DepthAI Viewer at: [Luxonis Docs](https://docs.luxonis.com/software/tools/dai-viewer/)
 
-# YOLOv8 Detection with OAK-D Camera 
+# YOLOv8 Object Detection And Instance Segmentation with OAK-D Camera 
 This section explains how to train a YOLOv8 model to detect boxe, pipe, base link of UR10e then run it in real-time using an OAK-D camera
 ## Steps Overview
 ### 1. Data Collection
