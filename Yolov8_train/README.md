@@ -25,8 +25,8 @@ This section explains how to train a YOLOv8 model to detect boxe, pipe, base lin
 
 #
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/cbb314e8-c010-4b06-8f8b-d2151c279700" alt="Kết quả 1" style="width: 49%; height: 300px; object-fit: contain; margin-right: 1%;" />
-  <img src="https://github.com/user-attachments/assets/797d843d-ae8a-448a-b837-2584a42bcb76" alt="Kết quả 2" style="width: 49%; height: 300px; object-fit: contain;" />
+  <img src="https://github.com/user-attachments/assets/cbb314e8-c010-4b06-8f8b-d2151c279700" alt="Result 1" style="width: 49%; height: 300px; object-fit: contain; margin-right: 1%;" />
+  <img src="https://github.com/user-attachments/assets/797d843d-ae8a-448a-b837-2584a42bcb76" alt="Result 2" style="width: 49%; height: 300px; object-fit: contain;" />
 </p>
 <h5 align="center">YOLOv8 model results after training on Roboflow</h5>
 
