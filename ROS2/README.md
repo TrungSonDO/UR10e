@@ -4,3 +4,5 @@
 </p>
 <h5 align="center">Component structure</h5>
 
+File custom_end_effector.xacro for intergrate in Universal_Robots_ROS2_Descripiton/urdf
+
