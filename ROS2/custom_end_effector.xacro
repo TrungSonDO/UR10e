@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="custom_end_effector" params="prefix parent_link">
+        <!-- MATERIALS  -->
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+        <material name="black">
+            <color rgba="0.0 0.0 0.0 1"/>
+        </material>
+        <material name="grey">
+            <color rgba="0.6 0.6 0.6 1"/>
+        </material>
+        <material name="blue">
+            <color rgba="0.2 0.2 1 0.5"/>
+        </material>
+        <material name="red">
+            <color rgba="1 0.0 0.0 0.8"/>
+        </material>
+        
+        <link name="tool_mount">
+            <visual>
+                <geometry>
+                    <cylinder radius="0.058" length="0.012"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.006" rpy="0.0 0.0 0.0"/>
+                <material name="white" />
+            </visual>
+        </link>
+
+        <!-- SQUARE MOTOR BOX -->
+        <link name="outer_casing">
+            <visual>
+                <geometry>
+                    <box size="0.056 0.056 0.056"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <material name="black"/>
+            </visual>
+        </link>
+
+        <!-- MOTOR INSIDE ROTATING MAGNET TIP -->
+        <link name="stepper_motor">
+            <visual>
+                <geometry>
+                    <cylinder radius="0.027" length="0.148"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <material name="red" />
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="0.027" length="0.148"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </collision>
+        </link>
+
+        <!-- ROUND FLANGE (aluminum disc mounted on front of motor) -->
+        <link name="motor_flange">
+            <visual>
+                <geometry>
+                    <cylinder radius="0.04" length="0.004"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <material name="grey" />
+            </visual>     
+        </link>
+
+        <!-- CYLINDER USED TO MOUNT MAGNET TIP INSIDE -->
+        <link name="magnet_holder">
+            <visual>
+                <geometry>
+                    <cylinder radius="0.03" length="0.076"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <material name="blue" />
+            </visual>
+        </link>
+
+        <link name="magnet_tip">
+            <visual>
+                <geometry>
+                    <sphere radius="0.02"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <material name="black" />
+            </visual>
+        </link>
+
+        <!-- JOINT -->
+        <joint name="base_to_tool_mount_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="tool_mount"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+
+
+        <joint name="tool_mount_to_casing_joint" type="fixed">
+            <parent link="tool_mount"/>
+            <child link="outer_casing"/>
+            <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 0.0"/>
+        </joint>
+
+        <joint name="casing_flange_joint" type="fixed">
+            <parent link="outer_casing"/>
+            <child link="motor_flange"/>
+            <origin xyz="0.0 0.0 0.03" rpy="0.0 0.0 0.0"/>
+        </joint>
+
+        <joint name="flange_magnet_holder_joint" type="fixed">
+            <parent link="motor_flange"/>
+            <child link="magnet_holder"/>
+            <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 0.0"/>
+        </joint>
+
+        <joint name="tool_mount_motor_joint" type="revolute">
+            <parent link="tool_mount"/>
+            <child link="stepper_motor"/>
+            <origin xyz="0.0 0.0 0.08" rpy="0.0 0.0 0.0"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="-3.14" upper="3.14" effort="5.0" velocity="1.0"/>
+        </joint>
+
+        <joint name="stepper_motor_magnet_tip_joint" type="fixed">
+            <parent link="stepper_motor"/>
+            <child link="magnet_tip"/>
+            <origin xyz="0.0 0.0 0.048" rpy="0.0 0.0 0.0"/>
+        </joint>
+
+        <joint name="wrist_3_to_tool_joint" type="fixed">
+            <parent link="wrist_3_link"/>
+            <child link="tool_mount"/>
+            <origin xyz="0 0 0.1" rpy="0 0 0"/> 
+        </joint> 
+    </xacro:macro>
+</robot>
