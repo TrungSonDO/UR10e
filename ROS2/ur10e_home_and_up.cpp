@@ -50,7 +50,7 @@ public:
                     current_pose.pose.position.y,
                     current_pose.pose.position.z);
 
-        std::cout << "Do you want to move 8.55 cm along Z? (y/n): ";
+        std::cout << "Do you want to move 8.55 cm along Z? (y/n): ";   // 9.1 cm maximum
         char ans_z;
         std::cin >> ans_z;
 
