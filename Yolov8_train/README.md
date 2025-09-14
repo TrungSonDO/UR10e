@@ -30,3 +30,11 @@ This section explains how to train a YOLOv8 model to detect boxe, pipe, base lin
 </p>
 <h5 align="center">YOLOv8 model results after training on Roboflow</h5>
 
+# Another way (not use Roboflow)
+- You can also use Edge Impulse, following the instructions in the link below.
+```
+https://docs.edgeimpulse.com/projects/expert-network/robotic-arm-sorting-arduino-braccio
+```
+
+
+
