@@ -20,23 +20,6 @@ ament_target_dependencies(ur10e_home_and_up
   moveit_core
 )
 
-add_executable(ur10e_home_and_points src/ur10e_home_and_points.cpp)
-ament_target_dependencies(ur10e_home_and_points
-  rclcpp
-  moveit_ros_planning_interface
-  geometry_msgs
-  moveit_core
-)
-
-add_executable(tourner src/tourner.cpp)
-ament_target_dependencies(tourner
-  rclcpp
-  moveit_ros_planning_interface
-  geometry_msgs
-  moveit_core
-)
-
-
 install(TARGETS 
   ur10e_home_and_up
   ur10e_home_and_points
