@@ -1,0 +1,2 @@
+- `stepper.ino`: Run the stepper motor at frequencies from 1 Hz to 10 Hz.
+- `sketch_sep10a.ino`: Run the stepper motor at 1 Hz.
